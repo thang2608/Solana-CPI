@@ -1,9 +1,8 @@
-use anchor_lang::{prelude::*, system_program};
+use anchor_lang::prelude::*;
 use anchor_spl::{
     associated_token::AssociatedToken,
-    token::{self, Mint, Token, TokenAccount},
+    token::{Mint, Token, TokenAccount},
 };
-
 declare_id!("6Zy6mwXfPtPMJ5PfB5q6w54Wpgckp2Z1rkuxHunbWWM6");
 
 pub mod transfer_helper;
@@ -58,7 +57,10 @@ pub mod staking_app {
         }
         Ok(())
     }
-
+    pub fn stake_token(ctx: Context<StakeToken>, amount: u64, is_stake: bool) -> Result<()> {
+        msg!("Hàm stake_token đã được gọi thông qua CPI!");
+        Ok(())
+    }
     pub fn add_rewards(ctx: Context<AddRewards>, amount: u64) -> Result<()> {
         require!(amount > 0, MyError::InvalidAmount);
         sol_transfer_from_user(
@@ -89,7 +91,7 @@ pub struct Stake<'info> {
     #[account(mut, seeds = [b"GLOBAL_STATE"], bump)]
     pub global_vault: Box<Account<'info, GlobalVault>>,
     
-    #[account(mut,init_if_needed, payer = payer, seeds = [b"USER_INFO", user.key().as_ref()], bump, space = 8 + 8)]
+    #[account(init_if_needed, payer = payer, seeds = [b"USER_INFO", user.key().as_ref()], bump, space = 8 + 8)]
     pub user_info: Box<Account<'info, UserInfo>>,
     
     #[account(mut)]
@@ -128,6 +130,28 @@ pub struct GlobalVault {
     pub admin: Pubkey,
     pub total_assets: u64,
     pub total_shares: u64,
+}
+#[derive(Accounts)]
+pub struct StakeToken<'info> {
+    #[account(mut)]
+    pub user: Signer<'info>,
+    #[account(mut)]
+    pub payer: Signer<'info>,
+    #[account(mut)]
+    pub global_vault: Box<Account<'info, GlobalVault>>,
+    pub mint: Account<'info, Mint>,
+    #[account(mut)]
+    pub user_ata: Account<'info, TokenAccount>,
+    /// CHECK: PDA Authority
+    pub vault_authority: AccountInfo<'info>,
+    #[account(mut)]
+    pub token_vault: Account<'info, TokenAccount>,
+    /// CHECK: User token state
+    #[account(mut)]
+    pub user_token_info: AccountInfo<'info>,
+    pub token_program: Program<'info, Token>,
+    pub associated_token_program: Program<'info, AssociatedToken>,
+    pub system_program: Program<'info, System>,
 }
 #[derive(Accounts)]
 pub struct Initialize<'info> {
