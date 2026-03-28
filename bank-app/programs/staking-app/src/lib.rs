@@ -3,7 +3,7 @@ use anchor_spl::{
     associated_token::AssociatedToken,
     token::{Mint, Token, TokenAccount},
 };
-declare_id!("6Zy6mwXfPtPMJ5PfB5q6w54Wpgckp2Z1rkuxHunbWWM6");
+declare_id!("HNirhdAT7nLA8V3j1oL96sVpfXWyeJd4LBBYmkRPceaJ");
 
 pub mod transfer_helper;
 

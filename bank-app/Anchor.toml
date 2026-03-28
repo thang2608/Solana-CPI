@@ -4,9 +4,9 @@
 resolution = true
 skip-lint = false
 
-[programs.devnet]
-bank_app = "Fqq8htu262aEVhVhAMKgbcsA9uM3mFTJMveBjRwQbg4F"
-staking_app = "8XwXtVKuvURqL5DMYMjn67vESbbpC2cT43MyW6iCxpQi"
+staking_app = "HNirhdAT7nLA8V3j1oL96sVpfXWyeJd4LBBYmkRPceaJ"
+bank_app = "H3Zhxm25m3k6UcRFfsppsZzh4uWwGatNXtTbk3x6jpmF"
+
 
 [registry]
 url = "https://api.apr.dev"
