@@ -11,6 +11,12 @@ Dự án mô phỏng một hệ thống tài chính phi tập trung (DeFi) bao g
 
 **Tính năng cốt lõi (The Magic):** Thay vì người dùng phải tự tay rút tiền từ Ngân hàng rồi đem qua Quỹ Staking để gửi, `bank-app` sẽ đại diện cho người dùng, sử dụng **CPI** để gọi trực tiếp sang `staking-app`. Ngân hàng sẽ dùng quyền ủy quyền của PDA (Program Derived Address) để ký tên các giao dịch này một cách bảo mật.
 
+## 📍 Địa chỉ Contract (Devnet)
+
+Các chương trình đã được triển khai và test thành công trên mạng lưới **Solana Devnet**:
+- **Bank App:** `Fqq8htu262aEVhVhAMKgbcsA9uM3mFTJMveBjRwQbg4F`
+- **Staking App:** `8XwXtVKuvURqL5DMYmjn67vESbbpC2cT43MyW6iCxpQi`
+
 ## 🧠 Kiến thức trọng tâm đã áp dụng
 
 - **Cross-Program Invocation (CPI):** Cách thiết lập `CpiContext` để gọi hàm từ program khác.
@@ -29,4 +35,3 @@ Dự án mô phỏng một hệ thống tài chính phi tập trung (DeFi) bao g
 │   └── bank-app.ts     # Kịch bản test toàn bộ luồng đi của dòng tiền
 ├── Anchor.toml         # Cấu hình địa chỉ của cả 2 programs
 └── README.md           # Bạn đang đọc nó đây!
-```
